@@ -1,0 +1,16 @@
+I = imread('tomeyes.jpeg');
+
+EyeDetect = vision.CascadeObjectDetector('EyePairBig');
+BB = step(EyeDetect, I);
+figure, imshow(I);
+hold on;
+
+for i = 1:size(BB,1)
+    rectangle('Position', BB(i,:), 'LineWidth', 4, 'LineStyle', '-', 'EdgeColor', 'r');
+end
+
+title('Eyes Detection');
+hold off;
+Eyes= imcrop(I,BB(i,:));
+Eyes=imcrop(I,BB);
+figure,imshow(Eyes);
